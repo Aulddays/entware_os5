@@ -1,0 +1,19 @@
+Package:		entware
+Version:		1.0
+Packager:		Aulddays
+Email:
+Homepage:		https://github.com/Entware/Entware
+Description:	Ultimate repo for embedded devices
+Icon:	        entware.png
+AddonShowName:	Entware
+AddonIndexPage: index.html
+AddonUsedPort:
+InstDepend:
+InstConflict:
+StartDepend:
+StartConflict:
+CenterType:		1
+UserControl:	0
+MinFWVer:
+MaxFWVer:
+IndividualFlag:	0

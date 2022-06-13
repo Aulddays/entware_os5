@@ -1,0 +1,8 @@
+#!/bin/sh
+
+ENTWARE_DIR/clean.sh
+
+# reset PATH
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/usr/local/bin"
+
+reboot "$@"

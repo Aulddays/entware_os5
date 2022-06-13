@@ -1,0 +1,11 @@
+if [ "$PS1" ]; then	# an interactive shell
+	export TERM=xterm-256color
+
+	export LS_OPTS='--color=auto'
+	alias ls='ls ${LS_OPTS}'
+	alias ll='ls -l'
+
+	alias view='vi -R'
+
+	export PATH='/opt/bin:/opt/sbin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin/'
+fi
