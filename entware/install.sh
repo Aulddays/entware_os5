@@ -13,17 +13,18 @@ set -x
 path_src=$1	# /mnt/HD/HD_a2/Nas_Prog/_install/entware
 NAS_PROG=$2	# /mnt/HD/HD_a2/Nas_Prog
 
-APKG_MODULE="entware"
-APKG_PATH="${NAS_PROG}/${APKG_MODULE}"
+# dir that will be mounted on /opt, in which all entware stuff will be installed
+OPTROOT="${NAS_PROG}/entware.root"
+
+APPDIR="${NAS_PROG}/entware"
 
 # copy the package to App
 cp -rf ${path_src} ${NAS_PROG}
 
 # create the entware root in a location that is not shared by samba
-OPT_ROOT="${NAS_PROG}/${APKG_MODULE}.root"
-mkdir -p ${OPT_ROOT}
-: "DEBUG: mount $OPT_ROOT to /opt"
-mount --bind ${OPT_ROOT} /opt >&2
+mkdir -p ${OPTROOT}
+: "DEBUG: mount $OPTROOT to /opt"
+mount --bind ${OPTROOT} /opt >&2
 
 ARCH="$(uname -m)"
 if [ ${ARCH} = "x86_64" ]; then
@@ -41,8 +42,8 @@ wget -O - "http://bin.entware.net/${ENT_ARCH}-k3.2/installer/generic.sh" | /bin/
 /opt/bin/opkg upgrade
 
 : "DEBUG: keep old WD reboot"
-sed -i "s|ENTWARE_DIR|${APKG_PATH}|" ${APKG_PATH}/sbin/reboot
-ln -sf ${APKG_PATH}/sbin/reboot /opt/sbin/reboot
+sed -i "s|ENTWARE_DIR|${APPDIR}|" ${APPDIR}/sbin/reboot
+ln -sf ${APPDIR}/sbin/reboot /opt/sbin/reboot
 
 : "Copy those are already in /opt"
 echo \
