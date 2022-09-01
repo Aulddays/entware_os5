@@ -50,12 +50,12 @@ PROFILE=/etc/profile
 
 # set home dir
 HOME=/home
-if [ -d ${HOME} && ! -L ${HOME}]; then
+if [[ -d ${HOME} && ! -L ${HOME} ]]; then
 	if ! mountpoint ${HOME}; then
 		: "Setup persistent home directory"
 		mkdir -p ${HOMEPERSIST}/root
 		chown root:root ${HOMEPERSIST}
-		mount -bind ${HOMEPERSIST} ${HOME}
+		mount --bind ${HOMEPERSIST} ${HOME}
 	fi
 fi
 
